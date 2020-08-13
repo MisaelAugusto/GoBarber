@@ -6,3 +6,7 @@ node_modules
 
 # logs
 yarn-error.log
+
+#upload
+tmp/*
+!tmp/.gitkeep
