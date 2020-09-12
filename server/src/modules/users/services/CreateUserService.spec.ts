@@ -1,20 +1,23 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import CreateUserService from './CreateUserService';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import AppError from '@shared/errors/AppError';
-import FakeHashProvider from "../providers/HashProvider/fakes/FakeHashProvider";
+import CreateUserService from './CreateUserService';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
+
+let createUser: CreateUserService;
+let fakeHashProvider: FakeHashProvider;
+let fakeUsersRepository: FakeUsersRepository;
 
 describe('CreateAppointment', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+
+    createUser = new CreateUserService(fakeUsersRepository, fakeHashProvider);
+  });
+
   it('should be able to create a new user', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     const user = await createUser.execute({
       name: 'Misael Augusto',
       email: 'misael.augusto326@gmail.com',
@@ -22,18 +25,9 @@ describe('CreateAppointment', () => {
     });
 
     expect(user).toHaveProperty('id');
-
   });
 
   it('should not be able to create a new user with same email from another', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const createUser = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     await createUser.execute({
       name: 'Misael Augusto',
       email: 'misael.augusto326@gmail.com',

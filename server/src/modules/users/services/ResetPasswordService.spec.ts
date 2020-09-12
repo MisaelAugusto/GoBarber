@@ -1,13 +1,13 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import AppError from "@shared/errors/AppError";
-import ResetPasswordService from './ResetPasswordService';
+import AppError from '@shared/errors/AppError';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
-import FakeHashProvider from "../providers/HashProvider/fakes/FakeHashProvider";
+import ResetPasswordService from './ResetPasswordService';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
-let fakeHashProvider : FakeHashProvider;
-let resetPassword : ResetPasswordService;
+let fakeHashProvider: FakeHashProvider;
+let resetPassword: ResetPasswordService;
 let fakeUsersRepository: FakeUsersRepository;
 let fakeUserTokensRepository: FakeUserTokensRepository;
 
@@ -15,7 +15,7 @@ describe('ResetPassword', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeUserTokensRepository = new FakeUserTokensRepository();
-    fakeHashProvider = new FakeHashProvider;
+    fakeHashProvider = new FakeHashProvider();
 
     resetPassword = new ResetPasswordService(
       fakeUsersRepository,
@@ -56,7 +56,9 @@ describe('ResetPassword', () => {
   });
 
   it('should not be able to reset the password with non-existing user', async () => {
-    const { token } = await fakeUserTokensRepository.generate('non-existing user');
+    const { token } = await fakeUserTokensRepository.generate(
+      'non-existing user'
+    );
 
     await expect(
       resetPassword.execute({
@@ -66,7 +68,7 @@ describe('ResetPassword', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should not be able to reset the password if passed more than 2 hours', async() => {
+  it('should not be able to reset the password if passed more than 2 hours', async () => {
     const user = await fakeUsersRepository.create({
       name: 'Misael Augusto',
       email: 'misael.augusto326@gmail.com',

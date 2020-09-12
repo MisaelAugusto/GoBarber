@@ -1,15 +1,15 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
 import AppError from '@shared/errors/AppError';
-import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
+import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 
 let fakeMailProvider: FakeMailProvider;
 let fakeUsersRepository: FakeUsersRepository;
 let fakeUserTokensRepository: FakeUserTokensRepository;
-let sendForgotPasswordEmail : SendForgotPasswordEmailService;
+let sendForgotPasswordEmail: SendForgotPasswordEmailService;
 
 describe('SendForgotPasswordEmail', () => {
   beforeEach(() => {
