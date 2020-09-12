@@ -20,8 +20,8 @@ describe('CreateAppointment', () => {
   it('should be able to create a new user', async () => {
     const user = await createUser.execute({
       name: 'Misael Augusto',
-      email: 'misael.augusto326@gmail.com',
-      password: '326159487'
+      email: 'misael.augusto@gmail.com',
+      password: '123456'
     });
 
     expect(user).toHaveProperty('id');
@@ -30,15 +30,15 @@ describe('CreateAppointment', () => {
   it('should not be able to create a new user with same email from another', async () => {
     await createUser.execute({
       name: 'Misael Augusto',
-      email: 'misael.augusto326@gmail.com',
-      password: '326159487'
+      email: 'misael.augusto@gmail.com',
+      password: '123456'
     });
 
     await expect(
       createUser.execute({
         name: 'Misael Augusto',
-        email: 'misael.augusto326@gmail.com',
-        password: '326159487'
+        email: 'misael.augusto@gmail.com',
+        password: '123456'
       })
     ).rejects.toBeInstanceOf(AppError);
   });
