@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import UserMap from '@modules/users/dtos/UserMap';
 
-export default class SessionsController {
+export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
       const { name, email, password } = request.body;
