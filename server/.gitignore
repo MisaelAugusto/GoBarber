@@ -7,6 +7,12 @@ node_modules
 # logs
 yarn-error.log
 
-#upload
+# upload
 tmp/*
 !tmp/.gitkeep
+
+# variables
+.env
+
+# database
+ormconfig.json
