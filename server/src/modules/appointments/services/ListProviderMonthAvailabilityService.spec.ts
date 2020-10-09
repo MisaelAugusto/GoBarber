@@ -24,14 +24,14 @@ describe('ListProviderMonthAvailability', () => {
       await fakeAppointmentsRepository.create({
         provider_id: 'user',
         user_id: '123456789',
-        date: new Date(2020, 4, 20, hour, 0, 0)
+        date: new Date(2020, 9, 20, hour, 0, 0)
       });
     });
 
     const availability = await listProviderMonthAvalability.execute({
       provider_id: 'user',
       year: 2020,
-      month: 5
+      month: 10
     });
 
     expect(availability).toEqual(
