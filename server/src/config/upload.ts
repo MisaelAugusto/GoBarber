@@ -1,4 +1,4 @@
-import multer, { StorageEngine } from 'multer';
+import multer from 'multer';
 import path from 'path';
 import crypto from 'crypto';
 
@@ -11,11 +11,11 @@ interface IUploadConfig {
   uploadsFolder: string;
 
   multer: {
-    storage: StorageEngine;
+    storage: multer.StorageEngine;
   };
 
   config: {
-    disk: any;
+    disk: {};
     aws: {
       bucket: string;
     };
@@ -26,7 +26,7 @@ export default {
   driver: process.env.STORAGE_DRIVER,
 
   tmpFolder,
-  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
+  uploadsFolder: path.resolve(tmpFolder, '..', 'uploads'),
 
   multer: {
     storage: multer.diskStorage({
