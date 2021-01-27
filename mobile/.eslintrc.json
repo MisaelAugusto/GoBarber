@@ -1,6 +1,7 @@
 {
     "env": {
-        "es6": true
+        "es6": true,
+        "browser": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -41,10 +42,14 @@
           "tsx": "never"
         }
       ],
+      "camelcase": "off",
+      "react/prop-types": "off",
       "prettier/prettier": "error",
-      "react/jsx-props-no-spreading": "off",
+      "import/no-duplicates": "off",
       "no-unused-expressions": "off",
-      "react/prop-types": "off"
+      "react/require-default-props": "off",
+      "@typescript-eslint/ban-types": "off",
+      "react/jsx-props-no-spreading": "off"
     },
     "settings": {
       "import/resolver": {

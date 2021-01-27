@@ -28,7 +28,6 @@ const Input: React.FC<InputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFilled, setIsFilled] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
   const handleInputFocus = useCallback(() => {
@@ -58,7 +57,7 @@ const Input: React.FC<InputProps> = ({
     >
       {Icon && <Icon size={20} />}
       <input
-        value={defaultValue}
+        defaultValue={defaultValue}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         ref={inputRef}
